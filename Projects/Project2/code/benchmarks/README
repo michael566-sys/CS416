@@ -7,7 +7,7 @@ How to run the benchmark?
 
 2. Before running the benchmark, run 
 
-	$ ./genRecord.sh
+	$ bash genRecord.sh
 
 The genRecord generates data for external_cal.
 

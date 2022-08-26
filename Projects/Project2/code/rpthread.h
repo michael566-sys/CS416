@@ -10,7 +10,7 @@
 #define _GNU_SOURCE
 
 /* To use Linux pthread Library in Benchmark, you have to comment the USE_RTHREAD macro */
-#define USE_RTHREAD 1
+// #define USE_RTHREAD 1
 
 #ifndef TIMESLICE
 /* defined timeslice to 5 ms, feel free to change this while testing your code
