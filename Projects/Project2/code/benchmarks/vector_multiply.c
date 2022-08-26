@@ -17,6 +17,7 @@ int res = 0;
 
 /* A CPU-bound task to do vector multiplication */
 void vector_multiply(void* arg) {
+	// input the value of counter
 	int i = 0;
 	int n = *((int*) arg);
 	
@@ -42,6 +43,7 @@ int main(int argc, char **argv) {
 	
 	int i = 0;
 
+	// input the thread number
 	if (argc == 1) {
 		thread_num = DEFAULT_THREAD_NUM;
 	} else {
@@ -54,14 +56,17 @@ int main(int argc, char **argv) {
 	}
 
 	// initialize counter
+	// for each thread, assign a int counter
 	counter = (int*)malloc(thread_num*sizeof(int));
 	for (i = 0; i < thread_num; ++i)
 		counter[i] = i;
 
 	// initialize pthread_t
+	// allocate memory for all the threads
 	thread = (pthread_t*)malloc(thread_num*sizeof(pthread_t));
 
 	// initialize data array
+	// assign values to r and s arraies. Each array is [1, 2, 3, ..., VECTOR_SIZE]
 	for (i = 0; i < VECTOR_SIZE; ++i) {
 		r[i] = i;
 		s[i] = i;
@@ -72,6 +77,7 @@ int main(int argc, char **argv) {
 	struct timespec start, end;
         clock_gettime(CLOCK_REALTIME, &start);
 
+	// for each thread, do vector multiplication
 	for (i = 0; i < thread_num; ++i)
 		pthread_create(&thread[i], NULL, &vector_multiply, &counter[i]);
 
